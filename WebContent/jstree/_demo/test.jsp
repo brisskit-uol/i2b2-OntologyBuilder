@@ -419,7 +419,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
                 $("#tree").jstree("close_all", -1);
                 
             	$.ajax({
-                    url: "http://" + window.location.hostname + ":" + window.location.port + "/TestWS/rest/service/parents/getParents?ontologyid=" + $("#biot-ontologyId").val() + "&conceptid=" + $("#biot-conceptIdShort").val() + "&ontologyVersionId=" + $("#biot-ontologyVersionId").val(),
+                    url: "http://" + window.location.hostname + ":" + window.location.port + "/OntologyBuilder/rest/service/parents/getParents?ontologyid=" + $("#biot-ontologyId").val() + "&conceptid=" + $("#biot-conceptIdShort").val() + "&ontologyVersionId=" + $("#biot-ontologyVersionId").val(),
                     dataType: "json",
                     data: { },
                     success: function( data ) {                           	
@@ -553,7 +553,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
             
             /*
             $("#bio").autocomplete({
-                source: "http://localhost:8080/TestWS/rest/service/ontologies/getAll",
+                source: "http://localhost:8080/OntologyBuilder/rest/service/ontologies/getAll",
                 minLength: 2,                
                 select: function( event, ui ) {
         			$( "#bio" ).val( ui.name + " / " + ui.name );
@@ -566,7 +566,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
             $("#bio").autocomplete({
                 source: function( request, response ) {
                     $.ajax({
-                        url: "http://" + window.location.hostname + ":" + window.location.port + "/TestWS/rest/service/ontologies/getAll",
+                        url: "http://" + window.location.hostname + ":" + window.location.port + "/OntologyBuilder/rest/service/ontologies/getAll",
                         dataType: "json",
                         data: {
                                 q: request.term
@@ -605,7 +605,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
             $("#biot").autocomplete({
                 source: function( request, response ) {
                     $.ajax({
-                        url: "http://" + window.location.hostname + ":" + window.location.port + "/TestWS/rest/service/terms/getTerm?ontologyid=" + $("#bio-ontologyId").val(),
+                        url: "http://" + window.location.hostname + ":" + window.location.port + "/OntologyBuilder/rest/service/terms/getTerm?ontologyid=" + $("#bio-ontologyId").val(),
                         dataType: "json",
                         data: {
                                 q: request.term
@@ -692,7 +692,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
                 $("#bio").autocomplete({
                 	source: function( request, response ) {
                     	$.ajax({                   		
-                    	url: "http://localhost:8080/TestWS/rest/service/ontologies/getAll",                    	                        	
+                    	url: "http://localhost:8080/OntologyBuilder/rest/service/ontologies/getAll",                    	                        	
                     	data: {
                     	featureClass: "P",
                     	style: "full",
@@ -781,7 +781,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
             /*
             $.ajax({
             	type: "POST",
-            	url: "http://" + window.location.hostname + ":" + window.location.port + "/TestWS/rest/service/settree",
+            	url: "http://" + window.location.hostname + ":" + window.location.port + "/OntologyBuilder/rest/service/settree",
             	data: JSON.stringify(data12)
             	}).done(function( msg ) {
             	alert( "Data Saved: " + msg );
@@ -789,7 +789,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
             */
             $.ajax({
                 type: "POST",
-                url: "http://" + window.location.hostname + ":" + window.location.port + "/TestWS/rest/service/settree",
+                url: "http://" + window.location.hostname + ":" + window.location.port + "/OntologyBuilder/rest/service/settree",
             	data: JSON.stringify(data12),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -902,7 +902,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
 	        }
 			
 			$.ajax({
-                url: "http://" + window.location.hostname + ":" + window.location.port + "/TestWS/rest/service/siblings/getSiblings?ontologyversionid=" + $("#biot-ontologyVersionId").val() + "&conceptid=" + p_siblings_parent,
+                url: "http://" + window.location.hostname + ":" + window.location.port + "/OntologyBuilder/rest/service/siblings/getSiblings?ontologyversionid=" + $("#biot-ontologyVersionId").val() + "&conceptid=" + p_siblings_parent,
                 dataType: "json",
                 data: { },
                 success: function( data ) {     
