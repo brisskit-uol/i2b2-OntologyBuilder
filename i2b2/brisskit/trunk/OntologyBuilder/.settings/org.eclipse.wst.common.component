@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="TestWS">
+    <wb-module deploy-name="OntologyBuilder">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/TestWS/build/classes"/>
-        <property name="context-root" value="TestWS"/>
+        <property name="java-output-path" value="/OntologyBuilder/build/classes"/>
+        <property name="context-root" value="OntologyBuilder"/>
     </wb-module>
 </project-modules>
