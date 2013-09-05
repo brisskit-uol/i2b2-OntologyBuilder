@@ -86,7 +86,12 @@ public class WebService {
 	static String name;
 	static String pass;
 	static String key;
-	static String url = "192.168.0.210";
+	//static String url = "192.168.0.210";
+	static String url = "winxp1";
+	
+	//String script_location = "/var/local/brisskit/i2b2/1ms.sql";
+	String script_location = "C:\\1MyFiles\\1ms.sql";
+	
 	
 	static String currentproject = "i16project";
 	static int currentprojectcount;
@@ -1680,7 +1685,8 @@ public class WebService {
     
           try  
           {  
-              FileReader fr = new FileReader(new File("/var/local/brisskit/i2b2/1ms.sql"));  
+        	  
+              FileReader fr = new FileReader(new File(script_location));  
               
               BufferedReader br = new BufferedReader(fr);  
     

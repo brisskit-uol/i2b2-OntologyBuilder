@@ -393,6 +393,7 @@ http://code.google.com/p/jstree/issues/detail?id=668
             	                       
             $("#addtest").click(function () {
             	//alert("addtest");
+            	$("#containercb-label").text("Please be patient");
             	$('#myModal').modal({show: true});
             	
             	$("#progress").show();
