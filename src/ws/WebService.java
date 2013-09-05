@@ -86,11 +86,11 @@ public class WebService {
 	static String name;
 	static String pass;
 	static String key;
-	//static String url = "192.168.0.210";
-	static String url = "winxp1";
+	static String url = "192.168.0.210";
+	//static String url = "winxp1";
 	
-	//String script_location = "/var/local/brisskit/i2b2/1ms.sql";
-	String script_location = "C:\\1MyFiles\\1ms.sql";
+	String script_location = "/var/local/brisskit/i2b2/1ms.sql";
+	//String script_location = "C:\\1MyFiles\\1ms.sql";
 	
 	
 	static String currentproject = "i16project";
@@ -679,140 +679,6 @@ public class WebService {
 		
 	}
 
-	public void nodeq(List<JSONObject> nodes) {
-		
-		
-		for (JSONObject a_root : nodes)
-		{
-			//List<String> dataS = JsonPath.read(track, "$.?[data="+a_root+"]");
-			//System.out.println("X"+dataS);
-			System.out.println("L-" + le + " C-"+ (a_root.size()-3) + " X-"+a_root.size() + " " + a_root);
-			
-			Set<String> keys = a_root.keySet();
-
-			for(String k : keys)
-			{
-				//System.out.println("k "+k);
-				
-			}
-		
-			if ((a_root.size()-3) == 0) 
-			{
-				System.out.println("This is a node ");
-				
-				c = c -1;
-				
-				System.out.println("c " + c);
-				
-				if (c==0) 
-				{
-					le = queue.remove();
-					System.out.println("remove " + le + " queue " + queue.toString());
-					//System.out.println("le " + le);
-				}
-			}
-			else
-			{
-			
-			try {
-				
-				le = le + 1;	
-				//c++;
-				List<JSONObject> childl1 = JsonPath.read(a_root, "$.children[*]");
-			    System.out.println("This has " + childl1.size() + " children " + " le " + le);
-			    
-			    
-			    
-			    c=childl1.size();
-			    
-			    if (childl1.size() >= 2)
-			    {
-			    	queue.add(le);	
-			    	System.out.println("add " + le + " queue " + queue.toString());
-			    }
-			    
-				//level = level + 1;
-				
-			    nodeq(childl1);
-			
-			}
-			catch (InvalidPathException e) 
-			{
-		        System.out.println("Exception le "+le + " c " + c);
-				le = le - 1; 
-				
-			}
-			
-			}
-			
-			//for (JSONObject a_childs : childl1)
-			//{
-			//	node(childl1);
-			//}
-			
-			
-
-		}
-		
-	}
-
-	public void node1(List<JSONObject> nodes, int level) {
-		
-		
-		for (JSONObject a_root : nodes)
-		{
-			//List<String> dataS = JsonPath.read(track, "$.?[data="+a_root+"]");
-			//System.out.println("X"+dataS);
-			System.out.println("L-" + level + " C-"+ (a_root.size()-3) + " X-"+a_root.size() + " " + a_root);
-			
-			Set<String> keys = a_root.keySet();
-
-			for(String k : keys)
-			{
-				//System.out.println("k "+k);
-				
-			}
-		
-			
-			
-			try {
-				
-				level = level + 1;	
-				//c++;
-				List<JSONObject> childl1 = JsonPath.read(a_root, "$.children[*]");
-			    System.out.println("This has " + childl1.size() + " children ");
-			    
-			    c=childl1.size();
-			    
-			    //if (childl1.size() >= 0)
-			    //{
-			    //	level = level + 1;		    
-			    //}
-			    
-				//level = level + 1;
-				
-			    node1(childl1, level);
-			
-			}
-			catch (InvalidPathException e) 
-			{
-		        System.out.println("Exception level "+level + " c " + c);
-				level = level - 1; 
-				
-			}
-			
-			
-			//for (JSONObject a_childs : childl1)
-			//{
-			//	node(childl1);
-			//}
-			
-			
-
-		}
-		
-	}
-	
 	@POST
 	@Path("settree")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -823,45 +689,12 @@ public class WebService {
 		String result = "Track saved : " + track;
 		System.out.println("X1 " + track);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		getproject();
 		
 		createdb();
 		
 		resetDatabasems();
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	    //[{"data":"Certain infectious and parasitic diseases(A00-B99p9) p(undefined)","attr":{"id":"A00-B99p9"},"state":"open","metadata":{},
-		//"children":[{"data":"Helminthiases(B65-B83p9) p(A00-B99p9)","attr":{"id":"B65-B83p9","class":""},"state":"open","metadata":{},
-		//"children":[{"data":"Other intestinal helminthiases, not elsewhere classified(B81) p(B65-B83p9)","attr":{"id":"B81","class":""},"state":"open","metadata":{},"children":[{"data":"Other specified intestinal helminthiases(B81p8)","attr":{"id":"B81p8"},"metadata":{}},{"data":"Intestinal angiostrongyliasis(B81p3)","attr":{"id":"B81p3"},"metadata":{}},{"data":"Helminthiases(B65-B83p9)","attr":{"id":"B65-B83p9"},"metadata":{}},{"data":"Trichostrongyliasis(B81p2) p(B81)","attr":{"id":"B81p2","class":""},"metadata":{}}]}]}]},{"data":"SNOMED International(C1140118) p(undefined)","attr":{"id":"C1140118"},"state":"closed","metadata":{},"children":[{"data":"GENERAL LINKAGE/MODIFIERS(C0338068) p(C1140118)","attr":{"id":"C0338068","class":""},"state":"closed","metadata":{},"children":[{"data":"GENERAL INFORMATION QUALIFIERS(C0332118) p(C0338068)","attr":{"id":"C0332118","class":""},"state":"closed","metadata":{},"children":[{"data":"Availability of(C0470187)","attr":{"id":"C0470187"},"metadata":{}},{"data":"Treatment required for(C0332121) p(C0332118)","attr":{"id":"C0332121","class":""},"metadata":{}}]}]}]},{"data":"Diseases of the musculoskeletal system and connective tissue(M00-M99p9) p(undefined)","attr":{"id":"M00-M99p9"},"state":"closed","metadata":{},"children":[{"data":"Arthropathies(M00-M25p9) p(M00-M99p9)","attr":{"id":"M00-M25p9","class":""},"state":"closed","metadata":{},"children":[{"data":"Arthrosis(M15-M19p9) p(M00-M25p9)","attr":{"id":"M15-M19p9","class":""},"state":"closed","metadata":{},"children":[{"data":"Coxarthrosis [arthrosis of hip](M16)","attr":{"id":"M16"},"metadata":{}},{"data":"Polyarthrosis(M15) p(M15-M19p9)","attr":{"id":"M15","class":""},"metadata":{}}]}]}]},{"data":"parent","attr":{"id":"root.id","class":""},"state":"closed","metadata":{},"children":[{"data":"child1","attr":{"id":"child1.id"},"metadata":{}},{"data":"child2","attr":{"id":"child2.id","class":""},"metadata":{}}]}]
-
 		List<Node> nodes = new ArrayList<Node>();
 		List<String> nodesS = new ArrayList<String>();
 		
@@ -897,68 +730,12 @@ public class WebService {
 			
 			a.add(a_root);
 			//c = 0;
-			//node1(a, 0);
-			//nodeq(a);
+			
 			nodestack(a);	
 		}
 		
 		return "{ \"d\" : \"" + currentproject + "\"}";
-		
-		//List<String> dataS = JsonPath.read(track, "$.?[data="+a_root+"]");
-		//System.out.println("X"+dataS);
-	
-		//node(all_roots, 0);
-		
-/*		
-	*/	
-		/*
-		for (JSONObject a_root : all_roots)
-		{
-			System.out.println("X "+a_root.size() + " " + a_root);
-			
-			Set<String> keys = a_root.keySet();
 
-			for(String k : keys)
-			{
-				System.out.println("k "+k);
-				
-			}
-			
-			List<JSONObject> childl1 = JsonPath.read(a_root, "$.children[*]");
-			System.out.println(childl1.size() + " " + childl1);
-			
-		}*/
-		
-			// for each child iterate
-			
-				
-		/*		
-	        while( keys.hasNext() ){
-	            String key = (String)keys.next();
-	            if( jObject.get(key) instanceof JSONObject ){
-
-	            }
-*/
-		/*	for (int i = 0; i < roots.length(); ++i) {
-			    JSONObject rec = recs.getJSONObject(i);
-			    int id = rec.getInt("id");
-			    String loc = rec.getString("loc");
-			    
-			}*/
-		
-		
-	/*
-		for(int i =0; i<data.size()-children.size(); i++)
-		{
-			List<String> dataS = JsonPath.read(track, "$.data["+i+"]");
-			System.out.println("X"+dataS);
-			
-		}
-		*/
-		//path2 = JsonPath.read(track, "$.success.data[0].list[0].classBean.relations[0].entry.string[1]");
-        
-		//return Response.status(201).entity(result).build();
- 
 	}
 	
 	@GET
@@ -1253,297 +1030,7 @@ public class WebService {
                 
 		return o_json;
 	}
-	
-	
-	@GET
-	@Path("authenticate/{username}/{password}/{apikey}/{time}")
-	@Produces({ MediaType.TEXT_HTML, MediaType.TEXT_PLAIN })
-	public String authenticate(@PathParam("username") String username, @PathParam("password") String password, @PathParam("apikey") String apikey, @PathParam("time") String time) {
-		return "{sessionid}";
-	}
-	
-	@GET
-	@Path("project/create/{name}/{sessionid}")
-	@Produces({ MediaType.TEXT_HTML, MediaType.TEXT_PLAIN })
-	public String createproject(@PathParam("name") String name, @PathParam("sessionid") String sessionid) {
-		return "{tttt,gggg}";
-	}
-	
-	
-	@GET
-	@Path("i2b2callback2/{incomingXML}")
-	@Produces({ MediaType.TEXT_HTML, MediaType.TEXT_PLAIN })
-	public String postOnlyXMLi2b2(@PathParam("incomingXML") String incomingXML) {
-		return "{tttt,gggg}";
-	}
-	
-	@GET
-	@Path("i2b2callback3/{incomingXML}")
-	@Produces({ MediaType.TEXT_HTML, MediaType.TEXT_PLAIN })
-	public String postOnlyXMLi2b3(@PathParam("incomingXML") String incomingXML) {
-		return "callbacki2b2({\"status\" : \"OK\"})";
-	}
 		
-	@GET
-	@Path("i2b2callback1/{incomingXML}")
-	@Produces("text/html")
-	public String postOnlyXMLi2b1(@PathParam("incomingXML") String incomingXML) {
-		logger.info("postOnlyXMLi2b1 incomingXML :" + incomingXML);
-		
-		String ids = "";
-		String project = "";
-		List<String> civi_contact_id = new ArrayList<String>();
-		
-		
-		
-		if (incomingXML.contains("*")) {
-			String[] parts = incomingXML.split("\\*");
-			ids = parts[0]; 
-			project = parts[1]; 
-			logger.info("if ids :" + ids);
-			logger.info("if project :" + project);
-			
-		} 
-		else 
-		{
-			ids = incomingXML;
-			logger.info("else ids :" + ids);
-		}
-		
-	//ist<String> brisskitids = sql(ids);
-
-		/*
-		String date = project + "-i2b2-cohort-"
-				+ new java.text.SimpleDateFormat("yyyy-MM-dd--HH-mm-ss")
-						.format(new java.util.Date());
-		System.out.println(date);*/
-
-		ClientConfig config = new DefaultClientConfig();
-		Client client = Client.create(config);
-
-		/*WebResource createGroupService = client.resource(createGroup(date));
-		String createGroupValueService = createGroupService.get(String.class);
-
-		logger.info(" ");
-		logger.info("responseoptionValueService............"
-				+ createGroupValueService);
-
-		int group_id = JsonPath.read(createGroupValueService, "$.values[0].id");
-
-		logger.info("group_id............" + group_id);*/
-
-		System.out.println("2");
-		
-		String error = "";
-		int error_count = 0;
-		int patient_count = 0;
-				
-		//Authenticate
-		
-		WebResource getAuthenticatedService = client.resource(getAuthenticated());
-		
-		logger.info(" * "); 
-		
-        String getAuthenticatedValueService = getAuthenticatedService.get(String.class);
-        
-        logger.info(" ** ");
-       
-        String api_key = JsonPath.read(getAuthenticatedValueService,"$.api_key");       
-        logger.info(" api_key " + api_key);        
-        String PHPSESSID = JsonPath.read(getAuthenticatedValueService,"$.PHPSESSID");        
-        logger.info(" PHPSESSID " + PHPSESSID);        
-        String key = JsonPath.read(getAuthenticatedValueService,"$.key");        
-        logger.info(" key " + key);
-        
-        //Authenticate
-        
-		
-		
-		
-		
-		
-		
-		String groupname = "i2b2-" + project + "-p-" +patient_count + " "
-				+ new java.text.SimpleDateFormat("yyyy-MM-dd--HH-mm-ss")
-						.format(new java.util.Date());
-		
-		if (error_count > 0)
-		{
-			groupname = "i2b2-" + project + "-p-" + patient_count + "-m-" + error_count + " "
-					+ new java.text.SimpleDateFormat("yyyy-MM-dd--HH-mm-ss")
-							.format(new java.util.Date());
-		}
-		
-		
-		
-		System.out.println(groupname);
-		
-		WebResource createGroupService = client.resource(createGroup(groupname,api_key,PHPSESSID,key));
-		String createGroupValueService = createGroupService.get(String.class);
-
-		logger.info(" ");
-		logger.info("responseoptionValueService............"
-				+ createGroupValueService);
-
-		int group_id = JsonPath.read(createGroupValueService, "$.values[0].id");
-
-		logger.info("group_id............" + group_id);
-		
-		
-		
-		
-		for (String civi_contact_ids : civi_contact_id) {
-			logger.info("civi_contact_ids :" + civi_contact_ids);
-			
-			WebResource addContactToGroupService = client
-					.resource(addContactToGroup(group_id, civi_contact_ids,api_key,PHPSESSID,key));
-			String addContactToGroupValueService = addContactToGroupService
-					.get(String.class);
-
-			logger.info(" ");
-			logger.info("addContactToGroupValueService............"
-					+ addContactToGroupValueService);
-			
-		}
-		
-		
-		
-
-		if (error != "")
-		{
-			logger.info("Do not exist in civi " + error.substring(0, error.length()-1));
-			//return "callbacki2b2({\"status\" : \" "+ error.substring(0, error.length()-1) + "\"})";
-			return "callbacki2b2({\"status\" : \"success\", \"log\" : \"some patients do not exist in civicrm\", \"patients\" : \""+ patient_count + "\", \"missing\" : \""+ error_count + "\"})";
-		}
-		else
-		{
-		    return "callbacki2b2({\"status\" : \"success\", \"log\" : \"all patients exist in civicrm\", \"patients\" : \""+ patient_count + "\", \"missing\" : \""+ error_count + "\"})";
-		}
-		
-		//return "success";
-	}
-
-
-	@GET
-	@Path("disp/{val}")
-	@Produces("text/plain")
-	public String getParameterToAdd(@PathParam("val") String name) {
-
-		StringBuffer buffer = new StringBuffer();
-		buffer.append("Dislay Message : ").append(name);
-
-		return buffer.toString();
-	}
-
-	
-
-
-	
-
-
-	
-	
-	/************************************/
-	/* CIVI CALLS                       */
-	/************************************/
-		
-	private static URI getOptionGroupBaseURI(String api_key, String PHPSESSID, String key) {
-		logger.info("getOptionGroupBaseURI ");
-		logger.info("http://"+ civiurl + rest_location + "?json=1&debug=1&version=3&entity=OptionGroup&action=get&name=activity_status" + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID);
-			
-		return UriBuilder
-				.fromUri(
-						"http://" + civiurl +  rest_location + "?json=1&debug=1&version=3&entity=OptionGroup&action=get&name=activity_status" + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID)
-				.build();
-	}
-
-	private static URI getOptionValueBaseURI(String option_group_id,String status,String api_key, String PHPSESSID, String key) {
-		logger.info("getOptionValueBaseURI ");
-		logger.info("option_group_id = " + option_group_id);
-		logger.info("status = " + status);
-		
-		logger.info("http://" + civiurl +  rest_location + "?json=1&debug=1&version=3&entity=OptionValue&action=get&option_group_id="
-				+ option_group_id + "&name=" + status + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID);
-
-		return UriBuilder
-				.fromUri(
-						"http://" + civiurl +  rest_location + "?json=1&debug=1&version=3&entity=OptionValue&action=get&option_group_id="
-								+ option_group_id + "&name=" + status + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID).build();
-
-	}
-
-	private static URI getBaseURI(String activity_id, String status_id, String api_key, String PHPSESSID, String key) {
-		logger.info("getBaseURI ");
-		logger.info("activity_id = " + activity_id);
-		logger.info("status_id = " + status_id);
-				
-		logger.info("http://" + civiurl +  rest_location + "?json=1&debug=1&entity=Activity&action=update&status_id="
-				+ status_id + "&id=" + activity_id + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID);
-
-		return UriBuilder
-				.fromUri(
-						"http://" + civiurl +  rest_location + "?json=1&debug=1&entity=Activity&action=update&status_id="
-								+ status_id
-								+ "&id="
-								+ activity_id
-								+ "&details=" + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID).build();
-
-	}
-
-	
-	private static URI getAuthenticated() {
-
-		logger.info(" *************** getAuthenticated");
-		
-		http://hack5.brisskit.le.ac.uk/civicrm/sites/all/modules/civicrm/extern/rest.php?q=civicrm/login&name=saj&pass=saj&key=c3d22d956e7c6531e750bdbe2ee3c115&json=1
-			
-		logger.info("http://" + civiurl + "/civicrm/sites/all/modules/civicrm/extern/rest.php?q=civicrm/login&name="+ name + "&pass="+ pass + "&key="+ key + "&json=1");
-
-		return UriBuilder
-				.fromUri("http://" + civiurl + "/civicrm/sites/all/modules/civicrm/extern/rest.php?q=civicrm/login&name="+ name + "&pass="+ pass + "&key="+ key + "&json=1").build();
-	}
-	
-	private static URI createGroup(String groupname, String api_key, String PHPSESSID, String key) {
-
-		logger.info(" ***************" + groupname);
-		logger.info("http://" + civiurl +  rest_location + "?json=1&sequential=1&debug=1&entity=Group&action=create&title="
-				+ groupname + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID);
-
-		return UriBuilder
-				.fromUri(
-						"http://" + civiurl +  rest_location + "?json=1&sequential=1&debug=1&entity=Group&action=create&title="
-								+ groupname + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID).build();
-	}
-
-	
-	private static URI getContactId(String brisskitid, String api_key, String PHPSESSID, String key) {
-
-		logger.info(" ***************" + brisskitid);
-		//logger.info("http://" + civiurl +  rest_location_orig + "?json=1&sequential=1&debug=1&entity=Brisskit&action=get&id=" + brisskitid);
-		logger.info("http://" + civiurl +  rest_location + "?json=1&sequential=1&debug=1&entity=Contact&action=get&custom_2=" + brisskitid + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID);
-
-		// Ensure that custom_2 is correct, could be custom_3 4 5 6, we dont know
-		///civicrm/civicrm/ajax/rest?json=1&sequential=1&debug=1&&entity=CustomField&action=get&name=BRISSkit_ID
-				
-		
-		return UriBuilder
-				.fromUri("http://" + civiurl +  rest_location + "?json=1&sequential=1&debug=1&entity=Contact&action=get&custom_2=" + brisskitid + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID).build();
-	}
-
-	private static URI addContactToGroup(int groupid, String contactid, String api_key, String PHPSESSID, String key) {
-
-		logger.info(groupid + " ***************" + contactid);
-		logger.info("http://" + civiurl +  rest_location + "?json=1&sequential=1&debug=1&entity=GroupContact&action=create&group_id="
-				+ groupid + "&contact_id=" + contactid + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID);
-
-		return UriBuilder
-				.fromUri(
-						"http://" + civiurl +  rest_location + "?json=1&sequential=1&debug=1&entity=GroupContact&action=create&group_id="
-								+ groupid + "&contact_id=" + contactid + "&key=" + key +"&api_key=" + api_key + "&PHPSESSID=" + PHPSESSID).build();
-	}
-
-	//createdb
-	
 	public static synchronized void createdb() {
 		String DB_CONN_STRING = "jdbc:jtds:sqlserver://" + url + ":1433/i2b2management;ssl=off;useCursors=true";	    
 	    String DRIVER_CLASS_NAME = "net.sourceforge.jtds.jdbc.Driver";
@@ -1583,13 +1070,9 @@ public class WebService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-	    
-	    
-	    
+	    	    
     }
 
-
-	
 	public static synchronized void getproject() {
 		String DB_CONN_STRING = "jdbc:jtds:sqlserver://" + url + ":1433/i2b2management;ssl=off;useCursors=true";	    
 	    String DRIVER_CLASS_NAME = "net.sourceforge.jtds.jdbc.Driver";
@@ -1636,19 +1119,14 @@ public class WebService {
 				st1.executeUpdate("UPDATE [i2b2management].[dbo].[projects]SET [projectcount] = " + (projectcount+1));
 				
 			}
-			
-	        
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-	    
-	    
-	    
+ 
     }
 
-	
 	  static public Connection getSimpleConnectionMSSQL() {
 			
 		    String DB_CONN_STRING = "jdbc:jtds:sqlserver://" + url + ":1433/i16project"+ currentprojectcount +";ssl=off;useCursors=true";	    
