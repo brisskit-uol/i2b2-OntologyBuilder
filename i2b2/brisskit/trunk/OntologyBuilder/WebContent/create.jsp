@@ -423,6 +423,12 @@ http://code.google.com/p/jstree/issues/detail?id=668
                     url: "http://" + window.location.hostname + ":" + window.location.port + "/OntologyBuilder/rest/service/parents/getParents?ontologyid=" + $("#biot-ontologyId").val() + "&conceptid=" + $("#biot-conceptIdShort").val() + "&ontologyVersionId=" + $("#biot-ontologyVersionId").val(),
                     dataType: "json",
                     data: { },
+                    error: function(){
+                        // will fire when timeout is reached
+                    	$("#progress").hide();
+                        $("#containercb-label").text("Bioportal is unavailable at this time. Please close browser and try again in 15 minutes");
+			           	
+                    },
                     success: function( data ) {                           	
                     	$.each(data, function(index) {
 				            //alert("x1 " + data[index].parentid + " " + data[index].id + " " + data[index].fullId + " " + data[index].label);
@@ -498,7 +504,8 @@ http://code.google.com/p/jstree/issues/detail?id=668
                         );
                         */
                         
-                    }
+                    },
+                    timeout: 40000 // sets timeout to 3 seconds
                 });
             	
             	
